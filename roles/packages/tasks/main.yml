@@ -1,0 +1,9 @@
+---
+- name: "Packages: Upgrade all"
+  apt:
+    name: "*"
+    state: latest
+- name: "Packages: Install requirements"
+  apt:
+    name: "{{ ubuntu_packages }}"
+    state: latest     

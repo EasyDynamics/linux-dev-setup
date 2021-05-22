@@ -1,0 +1,8 @@
+---
+- name: "SRV Script: Install"
+  copy:
+    src: files/srv
+    dest: /usr/local/bin/srv
+    owner: root
+    group: root
+    mode: "0755"

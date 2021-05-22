@@ -1,0 +1,17 @@
+---
+- name: "AWS CLI: Download"
+  get_url:
+    url: "{{ awscli_download_url }}"
+    dest: "{{ tempdir.path }}/awscliv2.zip"
+    timeout: 30
+    force: true
+- name: "AWS CLI: Unarchive"
+  unarchive:
+    dest: "{{ tempdir.path }}"
+    src: "{{ tempdir.path }}/awscliv2.zip"
+    owner: root
+    group: root
+    mode: "0755"
+    remote_src: yes
+- name: "AWS CLI: Install"
+  command: "{{ tempdir.path }}/aws/install --update"

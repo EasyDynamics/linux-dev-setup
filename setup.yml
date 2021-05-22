@@ -1,0 +1,26 @@
+---
+- name: Configure Linux Dev Environment
+  hosts: all
+  become: true
+  vars_files:
+    - vars/global.yml
+  handlers:
+    - name: Update Desktop Database
+      command: "/usr/bin/update-desktop-database"
+  pre_tasks:
+    - name: "Meta: Create tempdir"
+      tempfile:
+        state: directory
+      register: tempdir
+    - name: "Meta: Create applications directory"
+      file:
+        path: /usr/local/share/applications
+        state: directory
+        owner: root
+        group: root
+        mode: "0755"
+  roles:
+    - role: packages
+    - role: aws
+    - role: spring
+    - role: utils
