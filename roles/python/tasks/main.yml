@@ -18,6 +18,7 @@
 - name: "pyenv: Place config in ~/.profile"
   blockinfile:
     path: ~/.profile
+    marker: "# {mark} ANSIBLE MANAGED PYENV CONFIG"
     block: |
       export PYENV_ROOT="$HOME/.pyenv"
       export PATH="$PYENV_ROOT/bin:$PATH"

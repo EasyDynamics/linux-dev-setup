@@ -1,0 +1,14 @@
+---
+- name: Clone NVM
+  git:
+    repo: https://github.com/nvm-sh/nvm.git
+    dest: "~/.nvm"
+    version: "v{{ nvm_version }}"
+- name: Add config to profile
+  blockinfile:
+    path: ~/.profile
+    marker: "# {mark} ANSIBLE MANAGED NVM CONFIG"
+    block: |
+      export NVM_DIR="$HOME/.nvm"
+      [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+      [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
