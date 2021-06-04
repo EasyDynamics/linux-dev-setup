@@ -6,4 +6,8 @@
 - name: "Packages: Install requirements"
   apt:
     name: "{{ ubuntu_packages }}"
-    state: latest     
+    state: latest
+- name: "Use Java {{ default_java_version }} by default"
+  alternatives:
+    name: java
+    path: "/usr/lib/jvm/java-{{ default_java_version }}-openjdk-{{ dpkg_arch }}/bin/java"

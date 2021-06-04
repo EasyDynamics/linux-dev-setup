@@ -10,3 +10,4 @@ ubuntu_packages:
   - postgresql
   - wslu
   - ubuntu-desktop
+default_java_version: "11"

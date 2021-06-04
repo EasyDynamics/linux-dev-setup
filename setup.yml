@@ -7,6 +7,9 @@
     - name: Update Desktop Database
       command: "/usr/bin/update-desktop-database"
   pre_tasks:
+    - name: "Set facts"
+      set_fact:
+        dpkg_arch: "{{ 'amd64' if (ansible_architecture == 'x86_64') else ansible_architecture }}"
     - name: "Meta: Create tempdir"
       tempfile:
         state: directory
