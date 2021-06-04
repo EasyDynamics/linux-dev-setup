@@ -4,6 +4,7 @@ ubuntu_packages:
   - openjdk-11-doc
   - openjdk-16-jdk
   - openjdk-16-doc
+  - maven
   - git
   - zip
   - unzip
