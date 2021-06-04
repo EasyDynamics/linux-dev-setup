@@ -4,9 +4,11 @@ ubuntu_packages:
   - openjdk-11-doc
   - openjdk-16-jdk
   - openjdk-16-doc
+  - maven
   - git
   - zip
   - unzip
   - postgresql
   - wslu
   - ubuntu-desktop
+default_java_version: "11"

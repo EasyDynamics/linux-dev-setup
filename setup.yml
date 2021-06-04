@@ -6,7 +6,11 @@
   handlers:
     - name: Update Desktop Database
       command: "/usr/bin/update-desktop-database"
+      become: true
   pre_tasks:
+    - name: "Set facts"
+      set_fact:
+        dpkg_arch: "{{ 'amd64' if (ansible_architecture == 'x86_64') else ansible_architecture }}"
     - name: "Meta: Create tempdir"
       tempfile:
         state: directory
@@ -18,6 +22,7 @@
         owner: root
         group: root
         mode: "0755"
+      become: true
   roles:
     # These roles need to run as the root user
     - role: packages
