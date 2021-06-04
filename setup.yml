@@ -6,6 +6,7 @@
   handlers:
     - name: Update Desktop Database
       command: "/usr/bin/update-desktop-database"
+      become: true
   pre_tasks:
     - name: "Set facts"
       set_fact:
@@ -21,6 +22,7 @@
         owner: root
         group: root
         mode: "0755"
+      become: true
   roles:
     # These roles need to run as the root user
     - role: packages
