@@ -1,8 +1,8 @@
 ---
 - name: "Packages: Upgrade all"
   apt:
-    name: "*"
-    state: latest
+    upgrade: full
+    update_cache: yes
 - name: "Packages: Install requirements"
   apt:
     name: "{{ ubuntu_packages }}"
