@@ -1,13 +1,20 @@
 ---
-- name: "Packages: Upgrade all"
+- name: "Packages: Upgrade all apt packages"
   apt:
     upgrade: full
     update_cache: yes
+  when: ansible_pkg_mgr == "apt"
+- name: "Packages: Upgrade all dnf packages"
+  dnf:
+    name: "*"
+    state: latest
+  when: ansible_pkg_mgr == "dnf"
 - name: "Packages: Install requirements"
-  apt:
-    name: "{{ ubuntu_packages }}"
+  package:
+    name: "{{ lookup("
+    name: "{{ vars[ansible_distribution]['packages'] }}"
     state: latest
 - name: "Use Java {{ default_java_version }} by default"
   alternatives:
     name: java
-    path: "/usr/lib/jvm/java-{{ default_java_version }}-openjdk-{{ dpkg_arch }}/bin/java"
+    path: "{{ vars[ansible_distribution]['java_path'] }}"

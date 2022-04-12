@@ -1,14 +1,29 @@
 ---
-ubuntu_packages:
-  - openjdk-11-jdk
-  - openjdk-11-doc
-  - openjdk-16-jdk
-  - openjdk-16-doc
-  - maven
-  - git
-  - zip
-  - unzip
-  - postgresql
-  - wslu
-  - ubuntu-desktop
 default_java_version: "11"
+
+Ubuntu:
+  packages:
+    - openjdk-11-jdk
+    - openjdk-11-doc
+    - openjdk-17-jdk
+    - openjdk-17-doc
+    - maven
+    - git
+    - zip
+    - unzip
+    - postgresql
+    - wslu
+    - ubuntu-desktop
+    - build-essential
+  java_path: "/usr/lib/jvm/java-{{ default_java_version }}-openjdk-{{ dpkg_arch }}/bin/java"  
+Fedora:
+  packages:
+    - java-11-openjdk
+    - java-17-openjdk
+    - maven
+    - git
+    - zip
+    - unzip
+    - '@postgresql:14'
+    - '@Development tools'
+  java_path: "/usr/lib/jvm/java-{{ default_java_version }}-openjdk/bin/java"
