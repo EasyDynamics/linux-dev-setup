@@ -4,9 +4,9 @@
     repo: https://github.com/nvm-sh/nvm.git
     dest: "~/.nvm"
     version: "v{{ nvm_version }}"
-- name: Add config to profile
+- name: Add config to bashrc
   blockinfile:
-    path: ~/.profile
+    path: ~/.bashrc
     marker: "# {mark} ANSIBLE MANAGED NVM CONFIG"
     block: |
       export NVM_DIR="$HOME/.nvm"
