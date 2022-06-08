@@ -10,5 +10,4 @@ ubuntu_packages:
   - unzip
   - postgresql
   - wslu
-  - ubuntu-desktop
 default_java_version: "11"
