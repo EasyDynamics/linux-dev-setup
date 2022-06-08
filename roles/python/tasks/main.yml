@@ -15,9 +15,9 @@
   git:
     repo: https://github.com/pyenv/pyenv-doctor
     dest: "{{ pyenv_dir }}/plugins/pyenv-doctor"
-- name: "pyenv: Place config in ~/.profile"
+- name: "pyenv: Place config in ~/.bashrc"
   blockinfile:
-    path: ~/.profile
+    path: ~/.bashrc
     marker: "# {mark} ANSIBLE MANAGED PYENV CONFIG"
     block: |
       export PYENV_ROOT="$HOME/.pyenv"
