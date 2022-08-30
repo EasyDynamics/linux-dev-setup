@@ -29,8 +29,6 @@
       become: true
     - role: aws
       become: true
-    - role: spring
-      become: true
     - role: utils
       become: true
     # These roles need to run as the user running the
