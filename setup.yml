@@ -5,18 +5,18 @@
     - vars/global.yml
   handlers:
     - name: Update Desktop Database
-      command: "/usr/bin/update-desktop-database"
+      ansible.builtin.command: "/usr/bin/update-desktop-database"
       become: true
   pre_tasks:
     - name: "Set facts"
-      set_fact:
+      ansible.builtin.set_fact:
         dpkg_arch: "{{ 'amd64' if (ansible_architecture == 'x86_64') else ansible_architecture }}"
     - name: "Meta: Create tempdir"
-      tempfile:
+      ansible.builtin.tempfile:
         state: directory
       register: tempdir
     - name: "Meta: Create applications directory"
-      file:
+      ansible.builtin.file:
         path: /usr/local/share/applications
         state: directory
         owner: root
@@ -24,7 +24,7 @@
         mode: "0755"
       become: true
     - name: "Create .bashrc if not exists"
-      file:
+      ansible.builtin.file:
         path: ~/.bashrc
         state: touch
         mode: "0644"
