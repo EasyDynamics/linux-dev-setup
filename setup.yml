@@ -23,6 +23,13 @@
         group: root
         mode: "0755"
       become: true
+    - name: "Create .bashrc if not exists"
+      file:
+        path: ~/.bashrc
+        state: touch
+        mode: "0644"
+        modification_time: preserve
+        access_time: preserve
   roles:
     # These roles need to run as the root user
     - role: packages
