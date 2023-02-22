@@ -1,11 +1,11 @@
 ---
 - name: Clone NVM
-  git:
+  ansible.builtin.git:
     repo: https://github.com/nvm-sh/nvm.git
     dest: "~/.nvm"
     version: "v{{ nvm_version }}"
 - name: Add config to bashrc
-  blockinfile:
+  ansible.builtin.blockinfile:
     path: ~/.bashrc
     marker: "# {mark} ANSIBLE MANAGED NVM CONFIG"
     block: |

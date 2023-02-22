@@ -1,13 +1,13 @@
 ---
 - name: "Packages: Upgrade all"
-  apt:
+  ansible.builtin.apt:
     upgrade: full
-    update_cache: yes
+    update_cache: true
 - name: "Packages: Install requirements"
-  apt:
+  ansible.builtin.apt:
     name: "{{ ubuntu_packages }}"
     state: latest
-- name: "Use Java {{ default_java_version }} by default"
-  alternatives:
+- name: "By default, use Java {{ default_java_version }}"
+  community.general.alternatives:
     name: java
     path: "/usr/lib/jvm/java-{{ default_java_version }}-openjdk-{{ dpkg_arch }}/bin/java"

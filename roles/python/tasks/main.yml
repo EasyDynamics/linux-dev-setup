@@ -1,22 +1,22 @@
 ---
-- name: "pyenv: Install"
-  git:
+- name: "Install"
+  ansible.builtin.git:
     repo: https://github.com/pyenv/pyenv.git
     dest: "{{ pyenv_dir }}"
-- name: "pyenv: Install pyenv-virtualenv plugin"
-  git:
+- name: "Install pyenv-virtualenv plugin"
+  ansible.builtin.git:
     repo: https://github.com/pyenv/pyenv-virtualenv.git
     dest: "{{ pyenv_dir }}/plugins/pyenv-virtualenv"
-- name: "pyenv: Install pyenv-update plugin"
-  git:
+- name: "Install pyenv-update plugin"
+  ansible.builtin.git:
     repo: https://github.com/pyenv/pyenv-update
     dest: "{{ pyenv_dir }}/plugins/pyenv-update"
-- name: "pyenv: Install pyenv-doctor plugin"
-  git:
+- name: "Install pyenv-doctor plugin"
+  ansible.builtin.git:
     repo: https://github.com/pyenv/pyenv-doctor
     dest: "{{ pyenv_dir }}/plugins/pyenv-doctor"
-- name: "pyenv: Place config in ~/.bashrc"
-  blockinfile:
+- name: "Place config in ~/.bashrc"
+  ansible.builtin.blockinfile:
     path: ~/.bashrc
     marker: "# {mark} ANSIBLE MANAGED PYENV CONFIG"
     block: |

@@ -1,6 +1,6 @@
 ---
 - name: "SRV Script: Install"
-  copy:
+  ansible.builtin.copy:
     src: files/srv
     dest: /usr/local/bin/srv
     owner: root

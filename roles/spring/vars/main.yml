@@ -1,4 +1,0 @@
-sts_version: "4.13.0.RELEASE"
-eclipse_base: "4.22"
-sts_sha1sum: "85b2f88f6204fe7cdfb5f7a20d8f311c09903d11"
-sts_download_url: "https://download.springsource.com/release/STS4/{{ sts_version }}/dist/e{{ eclipse_base }}/spring-tool-suite-4-{{ sts_version }}-e{{ eclipse_base }}.0-linux.gtk.x86_64.tar.gz"
