@@ -21,7 +21,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip3 install -U pip
-          pip3 install -y ansible ansible-lint 
+          pip3 install ansible ansible-lint 
       - name: Run ansible-lint
         run: |
           ansible-lint -R
