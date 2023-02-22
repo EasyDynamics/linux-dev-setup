@@ -32,8 +32,8 @@ jobs:
     steps:
       - name: Install dependencies
         run: |
-          sudo apt-get update
-          sudo apt-get install -y ansible git ubuntu-minimal ubuntu-server ubuntu-wsl ubuntu-standard
+          apt-get update
+          apt-get install -y ansible git ubuntu-minimal ubuntu-server ubuntu-wsl ubuntu-standard
       # Ideally, we would just use `ansible-pull` here, as we document in the README. That way, we
       # test _exactly_ what the user will be doing. Unfortunately, that is not viable because we
       # want to make sure we get the proper HEAD when we clone. `actions/checkout` takes care of
