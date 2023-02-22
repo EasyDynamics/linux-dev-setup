@@ -19,3 +19,5 @@ Run playbook with:
 ```
 PYTHONUNBUFFERED=1 ansible-pull -U https://github.com/EasyDynamics/linux-dev-setup --directory "$(mktemp -d)" --purge -i hosts -K setup.yml
 ```
+
+When prompted for the `BECOME` password, enter the password for your user within WSL.
