@@ -31,9 +31,14 @@ jobs:
     container: ubuntu:latest
     steps:
       - name: Install dependencies
+        # This approximately pulls in most of the packages for a WSL install of Ubuntu; which
+        # hopefully is a good testing baseline that meets what most our users would be doing.
         run: |
           apt-get update
           apt-get install -y ansible git ubuntu-minimal ubuntu-server ubuntu-wsl ubuntu-standard
+        env:
+          # Do not ask questions during the install (we can't answer them!)
+          DEBIAN_FRONTEND: noninteractive
       # Ideally, we would just use `ansible-pull` here, as we document in the README. That way, we
       # test _exactly_ what the user will be doing. Unfortunately, that is not viable because we
       # want to make sure we get the proper HEAD when we clone. `actions/checkout` takes care of
@@ -44,5 +49,3 @@ jobs:
       - name: Run the playbook
         run: |
           ansible-playbook -i hosts -K setup.yml
-        env:
-          PYTHONUNBUFFERED: "1"
