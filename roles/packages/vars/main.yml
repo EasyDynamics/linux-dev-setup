@@ -1,7 +1,5 @@
 ---
 ubuntu_packages:
-  - openjdk-11-jdk
-  - openjdk-11-doc
   - openjdk-17-jdk
   - openjdk-17-doc
   - maven
@@ -10,4 +8,4 @@ ubuntu_packages:
   - unzip
   - postgresql
   - wslu
-default_java_version: "11"
+default_java_version: "17"
