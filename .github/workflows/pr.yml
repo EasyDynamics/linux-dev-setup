@@ -44,7 +44,7 @@ jobs:
       # test _exactly_ what the user will be doing. Unfortunately, that is not viable because we
       # want to make sure we get the proper HEAD when we clone. `actions/checkout` takes care of
       # this for us, but we'd have to pass some weird params to `ansible-pull` to make it do
-      # exxactly what we want here.
+      # exactly what we want here.
       - name: Clone the repository
         uses: actions/checkout@v3
       - name: Run the playbook
