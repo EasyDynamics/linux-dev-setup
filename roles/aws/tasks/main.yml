@@ -1,17 +1,20 @@
 ---
 - name: "AWS CLI: Download"
-  get_url:
+  ansible.builtin.get_url:
     url: "{{ awscli_download_url }}"
     dest: "{{ tempdir.path }}/awscliv2.zip"
     timeout: 30
     force: true
+    mode: "0644"
 - name: "AWS CLI: Unarchive"
-  unarchive:
+  ansible.builtin.unarchive:
     dest: "{{ tempdir.path }}"
     src: "{{ tempdir.path }}/awscliv2.zip"
     owner: root
     group: root
     mode: "0755"
-    remote_src: yes
+    remote_src: true
 - name: "AWS CLI: Install"
-  command: "{{ tempdir.path }}/aws/install --update"
+  register: cli_install
+  ansible.builtin.command: "{{ tempdir.path }}/aws/install --update"
+  changed_when: '"Skipping install" not in cli_install.stdout'

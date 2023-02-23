@@ -1,0 +1,52 @@
+---
+name: Lint and Test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  merge_group:
+
+jobs:
+  run-lint:
+    name: Run ansible-lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v3
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+      - name: Install dependencies
+        run: |
+          pip3 install -U pip
+          pip3 install ansible ansible-lint 
+      - name: Run ansible-lint
+        run: |
+          ansible-lint -R
+  run-install:
+    name: Run the full build
+    runs-on: ubuntu-latest
+    container: ubuntu:latest
+    steps:
+      - name: Install dependencies
+        # This approximately pulls in most of the packages for a WSL install of Ubuntu; which
+        # hopefully is a good testing baseline that meets what most our users would be doing.
+        run: |
+          apt-get update
+          apt-get install -y ansible git ubuntu-minimal ubuntu-server ubuntu-wsl ubuntu-standard
+        env:
+          # Do not ask questions during the install (we can't answer them!)
+          DEBIAN_FRONTEND: noninteractive
+      # Ideally, we would just use `ansible-pull` here, as we document in the README. That way, we
+      # test _exactly_ what the user will be doing. Unfortunately, that is not viable because we
+      # want to make sure we get the proper HEAD when we clone. `actions/checkout` takes care of
+      # this for us, but we'd have to pass some weird params to `ansible-pull` to make it do
+      # exactly what we want here.
+      - name: Clone the repository
+        uses: actions/checkout@v3
+      - name: Run the playbook
+        run: |
+          ansible-playbook -i hosts -K setup.yml
