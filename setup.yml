@@ -3,10 +3,6 @@
   hosts: all
   vars_files:
     - vars/global.yml
-  handlers:
-    - name: Update Desktop Database
-      ansible.builtin.command: "/usr/bin/update-desktop-database"
-      become: true
   pre_tasks:
     - name: "Set facts"
       ansible.builtin.set_fact:
